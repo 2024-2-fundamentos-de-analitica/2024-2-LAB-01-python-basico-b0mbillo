@@ -15,3 +15,18 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    with open("files/input/data.csv", "r") as archivo: 
+        data = archivo.read()
+    data = data.split("\n")
+    data.pop()
+    column_1 = [linea.split()[0] for linea in data]
+    
+    letras = list(set(column_1))
+    letras.sort()
+
+    conteos = [(letra, column_1.count(letra)) for letra in letras]
+    
+    #print(conteos)
+    return conteos
+    
+pregunta_02()

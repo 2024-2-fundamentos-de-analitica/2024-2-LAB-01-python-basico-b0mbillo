@@ -26,3 +26,35 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+
+    with open("files/input/data.csv", "r") as archivo: 
+        data = archivo.readlines()
+    column_5 = [linea.split()[4] for linea in data]
+
+    claves = ('aaa','bbb','ccc','ddd','eee','fff',
+              'ggg','hhh','iii','jjj')
+    
+    maximos = {}
+    minimos = {}
+    for clave in claves:
+        maximos[clave] = 0
+    for clave in claves:
+        minimos[clave] = 1000
+
+    pares = []
+    for diccionario in column_5:
+        x = diccionario.split(',')
+        for i in x:
+             pares.append(i)
+
+    #print(pares)
+
+    for par in pares:
+        clave, valor = par.split(':')
+        if clave in claves: # siempre van a estar ya que las claves fueron puestas explicitamente
+            if int(valor) > maximos[clave]:
+                maximos[clave] = int(valor)
+            if int(valor) < minimos[clave]:
+                minimos[clave] = int(valor)
+
+    return([(clave, minimos[clave], maximos[clave]) for clave in maximos])

@@ -24,3 +24,23 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+
+    with open("files/input/data.csv", "r") as archivo: 
+        data = archivo.readlines()
+    column_5 = [linea.split()[4] for linea in data]
+
+    claves_1 = ('aaa','bbb','ccc','ddd','eee','fff',
+              'ggg','hhh','iii','jjj')
+    
+    claves_2 = []
+    for diccionario in column_5:
+        x = diccionario.split(',')
+        for i in x:
+             clave = i.split(':')[0]
+             claves_2.append(clave)
+    
+    dicc = {}
+    for clave in claves_1:
+        dicc[clave] = claves_2.count(clave)
+    
+    return dicc

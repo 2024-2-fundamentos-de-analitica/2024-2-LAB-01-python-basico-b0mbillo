@@ -20,3 +20,15 @@ def pregunta_10():
 
 
     """
+    with open("files/input/data.csv", "r") as archivo: 
+        data = archivo.readlines()
+    column_5 = [linea.split()[4] for linea in data]
+    column_4 = [linea.split()[3] for linea in data]
+    column_1 = [linea.split()[0] for linea in data]
+
+    lista = []
+    for letra, letras, diccionario in zip(column_1, column_4, column_5):
+        lista.append((letra, len(letras.split(',')), len(diccionario.split(','))))
+
+    #print(lista)
+    return lista

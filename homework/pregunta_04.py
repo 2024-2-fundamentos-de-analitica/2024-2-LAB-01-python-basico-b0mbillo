@@ -26,3 +26,24 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open("files/input/data.csv", "r") as archivo: 
+        data = archivo.readlines()
+    column_3 = [linea.split()[2] for linea in data]
+    #print(column_3)
+
+    contadores = {}
+    meses = [f"0{i}" if i<10 else f"{i}" for i in range(1,13)]
+    #print(meses)
+
+    for mes in meses:
+        contadores[mes] = 0
+    
+    #print(contadores)
+
+    for fecha in column_3:
+        mes = fecha.split("-")[1]
+        contadores[mes] += 1
+
+    return [(clave, contadores[clave]) for clave in contadores]
+    #print(contadores)
+pregunta_04()

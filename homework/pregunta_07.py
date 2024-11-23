@@ -25,3 +25,17 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    with open("files/input/data.csv", "r") as archivo: 
+        data = archivo.readlines()
+    column_1 = [linea.split()[0] for linea in data]
+    column_2 = [linea.split()[1] for linea in data]
+
+    nums = [i for i in range(10)]
+    dicc = {}
+    for i in nums:
+        dicc[i] = []
+    
+    for letra, num in zip(column_1,column_2): 
+            dicc[int(num)].append(letra)
+    
+    return ([(clave, dicc[clave]) for clave in dicc])

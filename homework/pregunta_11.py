@@ -16,3 +16,19 @@ def pregunta_11():
 
 
     """
+    with open("files/input/data.csv", "r") as archivo: 
+        data = archivo.readlines()
+    column_4 = [linea.split()[3] for linea in data]
+    column_2 = [linea.split()[1] for linea in data]
+
+    letras = ('a', 'b', 'c', 'd', 'e', 'f', 'g') #se haria haciendole flatten a la columna y luego pasando esta lista a un set y el set a lista o tupla
+
+    dicc = {}
+    for letra in letras:
+        dicc[letra] = 0
+
+    for num, letras in zip(column_2, column_4):
+        for letra in letras.split(','):
+            dicc[letra] += int(num)
+    #print(dicc)
+    return dicc

@@ -15,3 +15,26 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+
+    with open("files/input/data.csv", "r") as archivo: 
+        data = archivo.readlines()
+    column_5 = [linea.split()[4] for linea in data]
+    column_1 = [linea.split()[0] for linea in data]
+
+    letras = list(set(column_1))
+    letras.sort()
+    
+    dicc = {}
+    for letra in letras:
+        dicc[letra] = 0
+
+
+    for letra, diccionario in zip(column_1, column_5):
+        duplas = diccionario.split(',')
+        #print(duplas)
+        for dupla in duplas:
+            valor = dupla.split(':')[1]
+            dicc[letra] += int(valor)
+        #print(letra, duplas)
+    #print(dicc)
+    return dicc
